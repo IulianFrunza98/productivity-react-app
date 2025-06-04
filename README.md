@@ -2,6 +2,23 @@
 
 A modern, responsive productivity dashboard built with React, designed to help users manage tasks, track progress, and stay organized.
 
+## Technologies Used
+
+- **React** - Frontend library for building user interfaces.
+- **React Router DOM** - Client-side routing for React applications.
+- **React Hot Toast** - Notification library for toast messages.
+- **React Icons** - Icon library for React.
+- **Vite** - Fast frontend build tool and development server.
+- **Tailwind CSS** - Utility-first CSS framework for styling.
+- **Firebase** - Backend-as-a-Service platform for authentication and Firestore database.
+- **Firestore** - NoSQL cloud database for storing tasks and user data.
+- **Framer Motion** - Animation library for React.
+- **Recharts** - Charting library for React to display stats.
+- **zustand** - Lightweight state management library using hooks.
+- **ESLint** - Code linting tool for JavaScript and React.
+- **Git** - Version control system.
+- **GitHub** - Remote repository hosting service.
+
 ## Features
 
 - **Dashboard:** Overview of your tasks and productivity metrics.
@@ -24,7 +41,7 @@ A modern, responsive productivity dashboard built with React, designed to help u
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/IulianFrunza98/productivity-react-app
    cd productivity-react-app
    ```
 
