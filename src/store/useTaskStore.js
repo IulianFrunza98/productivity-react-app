@@ -15,32 +15,50 @@ import {
 import useAuthStore from "./useAuthStore";
 
 const useTaskStore = create((set, get) => {
+  let unsubscribe = null;
+
+  const subscribeToTasks = (user) => {
+    if (unsubscribe) {
+      unsubscribe();
+      unsubscribe = null;
+    }
+
+    if (user) {
+      const tasksCollection = collection(db, "tasks");
+      const q = query(
+        tasksCollection,
+        where("userId", "==", user.uid),
+        orderBy("createdAt", "desc")
+      );
+
+      unsubscribe = onSnapshot(
+        q,
+        (querySnapshot) => {
+          const tasks = [];
+          querySnapshot.forEach((doc) => {
+            tasks.push({ id: doc.id, ...doc.data() });
+          });
+          set({ tasks, filteredTasks: tasks });
+        },
+        (error) => {
+          toast.error("Failed to load tasks: " + error.message);
+        }
+      );
+    } else {
+      set({ tasks: [], filteredTasks: [] });
+    }
+  };
+
+  // Subscribe to user changes
   const user = useAuthStore.getState().user;
-  const tasksCollection = collection(db, "tasks");
+  subscribeToTasks(user);
 
-  if (user) {
-    const q = query(
-      tasksCollection,
-      where("userId", "==", user.uid),
-      orderBy("createdAt", "desc")
-    );
-
-    onSnapshot(
-      q,
-      (querySnapshot) => {
-        const tasks = [];
-        querySnapshot.forEach((doc) => {
-          tasks.push({ id: doc.id, ...doc.data() });
-        });
-        set({ tasks, filteredTasks: tasks });
-      },
-      (error) => {
-        toast.error("Failed to load tasks: " + error.message);
-      }
-    );
-  } else {
-    set({ tasks: [], filteredTasks: [] });
-  }
+  useAuthStore.subscribe(
+    (user) => {
+      subscribeToTasks(user);
+    },
+    (state) => state.user
+  );
 
   return {
     tasks: [],
@@ -53,7 +71,7 @@ const useTaskStore = create((set, get) => {
 
     handleAddTask: async (task) => {
       try {
-        await addDoc(tasksCollection, {
+        await addDoc(collection(db, "tasks"), {
           ...task,
           createdAt: new Date(),
         });
