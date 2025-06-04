@@ -10,24 +10,37 @@ import {
   updateDoc,
   query,
   orderBy,
+  where,
 } from "firebase/firestore";
+import useAuthStore from "./useAuthStore";
 
 const useTaskStore = create((set, get) => {
+  const user = useAuthStore.getState().user;
   const tasksCollection = collection(db, "tasks");
 
-  onSnapshot(
-    query(tasksCollection, orderBy("createdAt", "desc")),
-    (querySnapshot) => {
-      const tasks = [];
-      querySnapshot.forEach((doc) => {
-        tasks.push({ id: doc.id, ...doc.data() });
-      });
-      set({ tasks, filteredTasks: tasks });
-    },
-    (error) => {
-      toast.error("Failed to load tasks: " + error.message);
-    }
-  );
+  if (user) {
+    const q = query(
+      tasksCollection,
+      where("userId", "==", user.uid),
+      orderBy("createdAt", "desc")
+    );
+
+    onSnapshot(
+      q,
+      (querySnapshot) => {
+        const tasks = [];
+        querySnapshot.forEach((doc) => {
+          tasks.push({ id: doc.id, ...doc.data() });
+        });
+        set({ tasks, filteredTasks: tasks });
+      },
+      (error) => {
+        toast.error("Failed to load tasks: " + error.message);
+      }
+    );
+  } else {
+    set({ tasks: [], filteredTasks: [] });
+  }
 
   return {
     tasks: [],
