@@ -1,100 +1,132 @@
-# Productivity React App
+# 🚀 Focusly – Productivity Dashboard
 
-A modern, responsive productivity dashboard built with React, designed to help users manage tasks, track progress, and stay organized.
+A modern, responsive productivity app built with React, Firebase, and Zustand. Focusly helps users manage tasks, track progress, and stay organized with a clean and engaging interface.
 
-## Technologies Used
+🔗 **Live Demo:** [https://focusly-prod.netlify.app](https://focusly-prod.netlify.app)
 
-- **React** - Frontend library for building user interfaces.
-- **React Router DOM** - Client-side routing for React applications.
-- **React Hot Toast** - Notification library for toast messages.
-- **React Icons** - Icon library for React.
-- **Vite** - Fast frontend build tool and development server.
-- **Tailwind CSS** - Utility-first CSS framework for styling.
-- **Firebase** - Backend-as-a-Service platform for authentication and Firestore database.
-- **Firestore** - NoSQL cloud database for storing tasks and user data.
-- **Framer Motion** - Animation library for React.
-- **Recharts** - Charting library for React to display stats.
-- **zustand** - Lightweight state management library using hooks.
-- **ESLint** - Code linting tool for JavaScript and React.
-- **Git** - Version control system.
-- **GitHub** - Remote repository hosting service.
+---
 
-## Features
+## 📸 Preview
 
-- **Dashboard:** Overview of your tasks and productivity metrics.
-- **Stats:** Visualize your productivity trends with charts.
-- **Notifications:** Stay informed with alerts for overdue or due-today tasks.
-- **Sidebar Navigation:** Easy access to all app sections with real-time notification badges.
-- **Authentication:** Secure login and protected routes to keep your data safe.
-- **Firestore Integration:** Cloud-based storage with secure access rules.
+<!-- Optional: Replace with your own image -->
 
-## Getting Started
+![App Screenshot]
+![Dashboard](./public/dashboard.png)
+![Notifications](./public/notifications.png)
+![Stats](./public/stats.png)
 
-### Prerequisites
+---
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-- Firebase account and project setup
+## 🧰 Tech Stack
 
-### Installation
+- **Frontend:** React, Vite, Tailwind CSS, React Router DOM, Zustand, Framer Motion
+- **Backend / Database:** Firebase Auth & Firestore
+- **Other Libraries:** React Icons, React Hot Toast, Recharts
+- **Dev Tools:** ESLint, Git, GitHub
 
-1. Clone the repository:
+---
 
-   ```bash
-   git clone https://github.com/IulianFrunza98/productivity-react-app
-   cd productivity-react-app
-   ```
+## ✨ Features
 
-2. Install dependencies:
+- 🔐 Firebase Authentication with protected routes
+- ✅ Task creation, deletion, and management
+- 📊 Productivity stats with interactive charts (Recharts)
+- 🔔 Real-time notifications for due/overdue tasks
+- 🧭 Sidebar with live badge updates
+- ☁️ Firestore integration with secure access rules
+- 🎨 Smooth animations using Framer Motion
 
-   ```bash
-   npm install
-   ```
+---
 
-3. Configure Firebase:
+## 🏗️ Folder Structure
 
-   - Create a Firebase project.
-   - Enable Firestore and Authentication.
-   - Update `src/firebase/firebase.js` with your Firebase config.
+```
+src/
+├── components/       # Reusable UI components
+├── pages/            # App pages (Dashboard, Stats, Notifications, etc.)
+├── store/            # Global state (Zustand)
+├── firebase/         # Firebase config and setup
+├── layouts/          # App layout components
+└── App.jsx           # Main application logic and routing
+```
 
-4. Run the development server:
+---
 
-   ```bash
-   npm run dev
-   ```
+## ⚙️ Getting Started
 
-5. Open your browser at `http://localhost:5173`.
+### ✅ Prerequisites
 
-### Building for Production
+- Node.js v14+
+- npm v6+
+- Firebase project with Firestore and Authentication enabled
 
-To create an optimized production build:
+### 🛠 Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/IulianFrunza98/productivity-react-app
+cd productivity-react-app
+
+# Install dependencies
+npm install
+```
+
+### 🔐 Firebase Configuration
+
+Create a `.env` file in the root folder and add your Firebase credentials:
+
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+```
+
+### 🚀 Run the App
+
+```bash
+npm run dev
+```
+
+App will be running at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🧪 Build for Production
 
 ```bash
 npm run build
 ```
 
-## Project Structure
+---
 
-- `src/components/` - Reusable UI components (Sidebar, NotificationsBadge, etc.)
-- `src/pages/` - Page components (Dashboard, Notifications, Stats, Profile, Homepage)
-- `src/store/` - State management hooks
-- `src/firebase/` - Firebase configuration and initialization
-- `src/layouts/` - Layout components for app structure
-- `src/App.jsx` - Main app component with routing and lazy loading
+## 🔐 Security
 
-## Security
-
-- Firestore rules restrict data access to authenticated users.
-- Routes are protected to prevent unauthorized access.
-
-## Contributing
-
-Contributions are welcome! Please open issues or submit pull requests.
-
-## License
-
-This project is licensed under the MIT License.
+- Environment variables are managed via `.env` (excluded from repo)
+- Firebase rules restrict access to authenticated users
+- Routes are protected and redirect unauthorized users
 
 ---
 
-For questions or support, please open an issue or contact the maintainer.
+## 🤝 Contributing
+
+Feel free to fork the repository and submit a pull request. Feedback and improvements are welcome!
+
+---
+
+## 👤 Author
+
+**Iulian Frunză**  
+Front-End Developer
+
+- GitHub: [@IulianFrunza98](https://github.com/IulianFrunza98)
+- LinkedIn: [linkedin.com/in/yourprofile](https://www.linkedin.com/in/iulian-costel-frunza-4736a8330/)
+- Email: fiulian87@yahoo.com
+
+---
+
+## 📄 License
+
+Licensed under the [MIT License](LICENSE).
