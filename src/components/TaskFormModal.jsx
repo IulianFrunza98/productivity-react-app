@@ -5,20 +5,29 @@ import { MdOutlineTask } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import Button from "../ui/Button";
 import useTaskStore from "../store/useTaskStore";
+import useAuthStore from "../store/useAuthStore";
+import toast from "react-hot-toast";
 
 function TaskFormModal() {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
   const setOpenAddForm = useTaskStore((state) => state.setOpenAddForm);
   const handleAddTask = useTaskStore((state) => state.handleAddTask);
+  const user = useAuthStore((state) => state.user);
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!user) {
+      toast.error("You must be logged in to add a task.");
+      return;
+    }
 
     const newTask = {
       taskName,
       dueDate,
       completed: false,
+      userId: user.uid,
     };
 
     if (!taskName.trim()) return;
