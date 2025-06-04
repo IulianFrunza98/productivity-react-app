@@ -23,7 +23,7 @@ const useTaskStore = create((set, get) => {
       unsubscribe = null;
     }
 
-    if (user) {
+    if (user && user.uid) {
       const tasksCollection = collection(db, "tasks");
       const q = query(
         tasksCollection,
