@@ -11,6 +11,7 @@ import {
   query,
   orderBy,
   where,
+  serverTimestamp,
 } from "firebase/firestore";
 import useAuthStore from "./useAuthStore";
 
@@ -49,15 +50,14 @@ const useTaskStore = create((set, get) => {
     }
   };
 
-  // Subscribe to user changes
   const user = useAuthStore.getState().user;
   subscribeToTasks(user);
 
   useAuthStore.subscribe(
-    (user) => {
-      subscribeToTasks(user);
+    (state) => {
+      subscribeToTasks(state.user);
     },
-    (state) => state.user
+    (state) => state
   );
 
   return {
@@ -66,14 +66,21 @@ const useTaskStore = create((set, get) => {
     openAddForm: false,
 
     setOpenAddForm: (open) => set({ openAddForm: open }),
-
     setFilteredTasks: (filteredTasks) => set({ filteredTasks }),
 
     handleAddTask: async (task) => {
+      const user = useAuthStore.getState().user;
+
+      if (!user) {
+        toast.error("You must be logged in to add a task.");
+        return;
+      }
+
       try {
         await addDoc(collection(db, "tasks"), {
           ...task,
-          createdAt: new Date(),
+          userId: user.uid,
+          createdAt: serverTimestamp(),
         });
         toast.success("Task added!");
       } catch (error) {
