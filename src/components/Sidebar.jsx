@@ -1,11 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
-import { MdOutlineTaskAlt } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
-import { useAuth } from "../contexts/auth/AuthContext";
+import useAuthStore from "../store/useAuthStore";
+import { IoIosStats } from "react-icons/io";
+import Logo from "./Logo";
+import { MdOutlineNotificationsActive } from "react-icons/md";
+import NotificationsBadge from "./NotificationsBadge";
 
 function Sidebar() {
-  const { logout } = useAuth();
+  const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
   async function handleLogout() {
@@ -23,7 +26,7 @@ function Sidebar() {
 
   return (
     <nav className="hidden md:flex bg-white m-4 rounded-2xl py-6 shadow-2xs w-[15rem]  flex-col h-[calc(100vh-2rem)]">
-      <span className="text-2xl font-extrabold mb-8 px-4">Focusly</span>
+      <Logo />
       <ul className="space-y-2 w-full">
         <li>
           <NavLink to="/app/dashboard" className={linkClass}>
@@ -32,9 +35,18 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/app/tasks" className={linkClass}>
-            <MdOutlineTaskAlt className="text-xl" />
-            My Tasks
+          <NavLink to="/app/stats" className={linkClass}>
+            <IoIosStats className="text-xl" />
+            Stats
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/app/notifications" className={linkClass}>
+            <div className="relative flex items-center">
+              <MdOutlineNotificationsActive className="text-xl" />
+              <NotificationsBadge />
+            </div>
+            <span className="ml-2">Notifications</span>
           </NavLink>
         </li>
       </ul>

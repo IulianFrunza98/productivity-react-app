@@ -1,13 +1,15 @@
 import Search from "./Search";
-import { FaBell } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { LuPlus } from "react-icons/lu";
-import UserMenu from "./UserMenu";
-import { useTask } from "../contexts/tasks/TaskContext";
 import TaskFormModal from "./TaskFormModal";
 import Button from "../ui/Button";
+import useTaskStore from "../store/useTaskStore";
+import UserMenu from "./UserMenu";
+import { NavLink } from "react-router-dom";
 
 function Topbar() {
-  const { openAddForm, setOpenAddForm } = useTask();
+  const openAddForm = useTaskStore((state) => state.openAddForm);
+  const setOpenAddForm = useTaskStore((state) => state.setOpenAddForm);
 
   return (
     <nav className="bg-white w-full p-3 shadow-2xs rounded-2xl flex items-center justify-between max-w-full">
@@ -18,17 +20,18 @@ function Topbar() {
       <div className="flex items-center gap-4 ml-4">
         <Button
           onClick={() => setOpenAddForm((prev) => !prev)}
-          className="hidden md:flex items-center gap-2"
+          className="flex items-center gap-2"
         >
           <LuPlus className="text-sm" />
           <span className="text-sm">New Task</span>
         </Button>
-        <button
-          aria-label="Notifications"
-          className="text-gray-600 hover:text-yellow-500 cursor-pointer transition-colors duration-200"
+        <NavLink
+          to="/app/profile"
+          aria-label="User profile"
+          className="hidden text-gray-600 hover:text-yellow-500 cursor-pointer transition md:flex items-center justify-center p-2 rounded-full"
         >
-          <FaBell size={20} />
-        </button>
+          <FaUserCircle size={24} />
+        </NavLink>
         <UserMenu />
       </div>
 

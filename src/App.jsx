@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,13 +8,14 @@ import {
 
 import { Toaster } from "react-hot-toast";
 
-import Homepage from "./pages/Homepage";
-import Profile from "./pages/Profile";
-import Dashboard from "./pages/Dashboard";
-import Tasks from "./pages/Tasks";
-
 import AppLayout from "./layouts/AppLayout";
-import RequireAuth from "./contexts/auth/RequireAuth";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+const Homepage = lazy(() => import("./pages/Homepage"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Stats = lazy(() => import("./pages/Stats"));
+const Notifications = lazy(() => import("./pages/Notifications"));
 
 function App() {
   return (
@@ -40,22 +42,49 @@ function App() {
         }}
       />
       <Router>
-        <Routes>
-          <Route index element={<Homepage />} />
-          <Route
-            path="/app"
-            element={
-              <RequireAuth>
-                <AppLayout />
-              </RequireAuth>
-            }
-          >
-            <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="tasks" element={<Tasks />} />
-          </Route>
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route index element={<Homepage />} />
+
+            <Route path="/app" element={<AppLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route
+                path="dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="stats"
+                element={
+                  <ProtectedRoute>
+                    <Stats />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="notifications"
+                element={
+                  <ProtectedRoute>
+                    <Notifications />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </Router>
     </>
   );

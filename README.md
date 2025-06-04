@@ -1,12 +1,83 @@
-# React + Vite
+# Productivity React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive productivity dashboard built with React, designed to help users manage tasks, track progress, and stay organized.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dashboard:** Overview of your tasks and productivity metrics.
+- **Stats:** Visualize your productivity trends with charts.
+- **Notifications:** Stay informed with alerts for overdue or due-today tasks.
+- **Sidebar Navigation:** Easy access to all app sections with real-time notification badges.
+- **Authentication:** Secure login and protected routes to keep your data safe.
+- **Firestore Integration:** Cloud-based storage with secure access rules.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- Firebase account and project setup
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   cd productivity-react-app
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Configure Firebase:
+
+   - Create a Firebase project.
+   - Enable Firestore and Authentication.
+   - Update `src/firebase/firebase.js` with your Firebase config.
+
+4. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open your browser at `http://localhost:5173`.
+
+### Building for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+- `src/components/` - Reusable UI components (Sidebar, NotificationsBadge, etc.)
+- `src/pages/` - Page components (Dashboard, Notifications, Stats, Profile, Homepage)
+- `src/store/` - State management hooks
+- `src/firebase/` - Firebase configuration and initialization
+- `src/layouts/` - Layout components for app structure
+- `src/App.jsx` - Main app component with routing and lazy loading
+
+## Security
+
+- Firestore rules restrict data access to authenticated users.
+- Routes are protected to prevent unauthorized access.
+
+## Contributing
+
+Contributions are welcome! Please open issues or submit pull requests.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+For questions or support, please open an issue or contact the maintainer.

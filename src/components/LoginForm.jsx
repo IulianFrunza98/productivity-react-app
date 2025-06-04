@@ -1,10 +1,10 @@
 import { FaGoogle } from "react-icons/fa";
-import { useAuth } from "../contexts/auth/AuthContext";
+import useAuthStore from "../store/useAuthStore";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function LoginForm() {
-  const { loginWithGoogle } = useAuth();
+  const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
@@ -17,12 +17,9 @@ export function LoginForm() {
 
   async function handleGoogleLogin() {
     setLoading(true);
-    try {
-      await loginWithGoogle();
-      navigate(from, { replace: true });
-    } finally {
-      setLoading(false);
-    }
+    await loginWithGoogle();
+    navigate(from, { replace: true });
+    setLoading(false);
   }
 
   return (

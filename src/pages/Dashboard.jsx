@@ -2,9 +2,9 @@ import TasksList from "../components/TasksList";
 
 function Dashboard() {
   return (
-    <div>
+    <section>
       <TasksList />
-    </div>
+    </section>
   );
 }
 
