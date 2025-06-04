@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 function TaskFormModal() {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [taskNameError, setTaskNameError] = useState("");
+  const [dueDateError, setDueDateError] = useState("");
   const setOpenAddForm = useTaskStore((state) => state.setOpenAddForm);
   const handleAddTask = useTaskStore((state) => state.handleAddTask);
   const user = useAuthStore((state) => state.user);
@@ -18,10 +20,28 @@ function TaskFormModal() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    // Reset errors
+    setTaskNameError("");
+    setDueDateError("");
+
     if (!user) {
       toast.error("You must be logged in to add a task.");
       return;
     }
+
+    let hasError = false;
+
+    if (!taskName.trim()) {
+      setTaskNameError("Task name is required.");
+      hasError = true;
+    }
+
+    if (!dueDate) {
+      setDueDateError("Due date is required.");
+      hasError = true;
+    }
+
+    if (hasError) return;
 
     const newTask = {
       taskName,
@@ -30,10 +50,9 @@ function TaskFormModal() {
       userId: user.uid,
     };
 
-    if (!taskName.trim()) return;
-
     handleAddTask(newTask);
     setTaskName("");
+    setDueDate("");
   }
 
   return (
@@ -59,8 +78,19 @@ function TaskFormModal() {
               <label htmlFor="taskName" className="text-sm text-gray-600">
                 Task name
               </label>
-              <div className="flex items-center gap-2 border px-3 py-2 rounded-md focus-within:ring-2 focus-within:ring-yellow-400">
-                <MdOutlineTask size="1.3em" className="text-gray-500" />
+              <div
+                className={`flex items-center gap-2 border px-3 py-2 rounded-md focus-within:ring-2 transition ${
+                  taskNameError
+                    ? "border-red-500 border-2 focus-within:ring-red-500"
+                    : "border-yellow-400 focus-within:ring-yellow-400"
+                }`}
+              >
+                <MdOutlineTask
+                  size="1.3em"
+                  className={`text-gray-500 ${
+                    taskNameError ? "text-red-500" : ""
+                  }`}
+                />
                 <input
                   id="taskName"
                   value={taskName}
@@ -79,6 +109,9 @@ function TaskFormModal() {
                   <IoClose size="1.3em" />
                 </button>
               </div>
+              {taskNameError && (
+                <p className="text-red-500 text-xs mt-1">{taskNameError}</p>
+              )}
             </div>
 
             {/* Due date input */}
@@ -92,8 +125,15 @@ function TaskFormModal() {
                 onChange={(e) => setDueDate(e.target.value)}
                 type="date"
                 id="dueDate"
-                className="w-full px-3 py-2 rounded-md border text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className={`w-full px-3 py-2 rounded-md border text-sm text-gray-700 focus:outline-none focus:ring-2 transition ${
+                  dueDateError
+                    ? "border-red-500 border-2 focus:ring-red-500"
+                    : "border-yellow-400 focus:ring-yellow-400"
+                }`}
               />
+              {dueDateError && (
+                <p className="text-red-500 text-xs mt-1">{dueDateError}</p>
+              )}
             </div>
 
             {/* Submit button */}

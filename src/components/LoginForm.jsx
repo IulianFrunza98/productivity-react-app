@@ -9,6 +9,10 @@ export function LoginForm() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
+  // Added state for email and password
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const from = location.state?.from?.pathname || "/app";
 
   async function handleSubmit(e) {
@@ -37,6 +41,8 @@ export function LoginForm() {
           className="border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           placeholder="Your email"
           aria-label="Email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -49,12 +55,15 @@ export function LoginForm() {
           className="border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           placeholder="Your password"
           aria-label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-3 mt-4">
         <button
           type="submit"
-          className="cursor-pointer bg-yellow-400 text-black border-1 px-4 py-2 rounded hover:bg-yellow-500 transition"
+          disabled={!email || !password}
+          className="cursor-pointer bg-yellow-400 text-black border-1 px-4 py-2 rounded hover:bg-yellow-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Login
         </button>
