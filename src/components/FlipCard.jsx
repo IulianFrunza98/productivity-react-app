@@ -35,7 +35,7 @@ function FlipCard({ icon, label, value, children }) {
             backgroundColor: "white",
             borderRadius: "1rem",
             boxShadow: "0 4px 10px rgb(0 0 0 / 0.1)",
-            padding: "24px 24px 32px 24px", // mai mult padding jos
+            padding: "24px 24px 32px 24px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -56,7 +56,7 @@ function FlipCard({ icon, label, value, children }) {
                 style={{
                   fontSize: "14px",
                   color: "#6b7280",
-                  marginBottom: "0.5rem", // spatiu intre label si value
+                  marginBottom: "0.5rem",
                 }}
               >
                 {label}
@@ -92,7 +92,7 @@ function FlipCard({ icon, label, value, children }) {
             backgroundColor: "#fef3c7",
             borderRadius: "1rem",
             boxShadow: "0 4px 10px rgb(0 0 0 / 0.1)",
-            padding: "24px 24px 32px 24px", // mai mult padding sus și jos
+            padding: "24px 24px 32px 24px",
             color: "#374151",
             fontSize: "14px",
             overflowY: "auto",

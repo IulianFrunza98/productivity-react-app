@@ -9,7 +9,6 @@ export function LoginForm() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
-  // Added state for email and password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

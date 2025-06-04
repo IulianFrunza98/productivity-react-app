@@ -4,7 +4,6 @@ import useTaskStore from "../store/useTaskStore";
 function NotificationsBadge() {
   const tasks = useTaskStore((state) => state.tasks);
 
-  // Get today's date without time for comparison
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 

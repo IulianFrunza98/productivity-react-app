@@ -43,7 +43,7 @@ function Search() {
       const fuseResults = fuse.search(debouncedQuery);
       const results = fuseResults.map((result) => result.item);
       setFilteredTasks(results);
-      setSuggestions(results.slice(0, 5)); // show top 5 suggestions
+      setSuggestions(results.slice(0, 5));
       setShowDropdown(true);
       setHighlightedIndex(-1);
     }
