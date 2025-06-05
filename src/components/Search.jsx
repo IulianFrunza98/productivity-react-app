@@ -124,11 +124,11 @@ function Search() {
         autoComplete="off"
       />
       {showDropdown && suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 max-h-60 overflow-auto shadow-lg">
+        <ul className="absolute z-10 w-full dark:bg-gray-800 bg-white border border-gray-300 rounded-md mt-1 max-h-60 overflow-auto shadow-lg">
           {suggestions.map((task, index) => (
             <li
               key={task.id}
-              className={`px-4 py-2 cursor-pointer hover:bg-yellow-100 ${
+              className={`px-4 py-2 cursor-pointer dark:hover:bg-gray-700 hover:bg-yellow-100 ${
                 index === highlightedIndex ? "bg-yellow-200" : ""
               }`}
               onMouseDown={() => handleSuggestionClick(task.taskName)}
