@@ -20,14 +20,14 @@ function Sidebar() {
     `flex items-center gap-3 w-full px-4 py-2 rounded transition-colors duration-200
     ${
       isActive
-        ? "font-semibold text-gray-800 bg-yellow-100 border-l-4 border-yellow-500"
-        : "text-gray-600 hover:bg-yellow-50"
+        ? "font-semibold text-gray-900 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/40 border-l-4 border-yellow-500"
+        : "text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-800"
     }`;
 
   return (
-    <nav className="hidden md:flex bg-white m-4 rounded-2xl py-6 shadow-2xs w-[15rem]  flex-col h-[calc(100vh-2rem)]">
+    <nav className="hidden md:flex bg-white dark:bg-gray-800 m-4 rounded-2xl py-6 shadow-lg w-[15rem] flex-col h-[calc(100vh-2rem)]">
       <Logo />
-      <ul className="space-y-2 w-full">
+      <ul className="space-y-2 w-full mt-4">
         <li>
           <NavLink to="/app/dashboard" className={linkClass}>
             <RxDashboard className="text-xl" />
@@ -51,10 +51,10 @@ function Sidebar() {
         </li>
       </ul>
 
-      <div className="mt-auto border-t border-gray-200 pt-4 px-4">
+      <div className="mt-auto border-t border-gray-300 dark:border-gray-700 pt-4 px-4">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 cursor-pointer w-full px-4 py-2 rounded text-gray-600 hover:bg-yellow-50 transition-colors duration-200"
+          className="flex items-center gap-3 cursor-pointer w-full px-4 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-yellow-50 dark:hover:bg-gray-800 transition-colors duration-200"
         >
           <BiLogOut className="text-xl" />
           Log out

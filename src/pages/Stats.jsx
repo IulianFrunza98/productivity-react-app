@@ -1,6 +1,6 @@
 import { FaTasks, FaCheckCircle, FaClock } from "react-icons/fa";
 import useTaskStore from "../store/useTaskStore";
-import Chart from "../components/Chart";
+import Chart from "../ui/Chart";
 import FlipCard from "../components/FlipCard";
 
 function Stats() {
@@ -28,7 +28,7 @@ function Stats() {
     totalTasks === 0 ? 0 : Math.floor((completedTasks / totalTasks) * 100);
 
   return (
-    <section className="p-6 max-w-7xl mx-auto flex flex-col gap-10">
+    <section className="p-6 max-w-7xl mx-auto flex flex-col gap-10 text-gray-800 dark:text-gray-100">
       {/* Cards container */}
       <div className="flex flex-wrap justify-center gap-6">
         <FlipCard
@@ -66,7 +66,7 @@ function Stats() {
       </div>
 
       {/* Motivational message */}
-      <div className="bg-yellow-50 p-4 rounded-xl text-center text-yellow-700 font-semibold shadow-inner">
+      <div className="bg-yellow-50 dark:bg-gray-800 dark:text-yellow-200 p-4 rounded-xl text-center font-semibold shadow-inner">
         {completedTasks === totalTasks && totalTasks > 0
           ? "🎉 Great job! You've completed all your tasks!"
           : `You have ${pendingTasks} pending task${
@@ -76,11 +76,11 @@ function Stats() {
 
       {/* Chart */}
       <div>
-        <h2 className="text-xl font-semibold text-gray-700 mb-4 text-center">
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 text-center">
           Progress Chart
         </h2>
         {tasks.length === 0 ? (
-          <p className="text-gray-400 text-sm text-center">
+          <p className="text-gray-400 dark:text-gray-500 text-sm text-center">
             No tasks to display.
           </p>
         ) : (

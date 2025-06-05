@@ -111,6 +111,7 @@ function Search() {
           transition
           duration-200
           min-w-0
+          dark:bg-gray-700
         "
         aria-label="Search"
         value={query}

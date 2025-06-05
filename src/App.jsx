@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 
 import AppLayout from "./layouts/AppLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import FloatingDarkModeToggle from "./ui/FloatingDarkModeToggle";
 
 const Homepage = lazy(() => import("./pages/Homepage"));
 const Profile = lazy(() => import("./pages/Profile"));
@@ -42,6 +43,7 @@ function App() {
         }}
       />
       <Router>
+        <FloatingDarkModeToggle />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route index element={<Homepage />} />

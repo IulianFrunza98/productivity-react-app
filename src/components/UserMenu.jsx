@@ -43,18 +43,18 @@ function UserMenu() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-md z-50 overflow-hidden"
+            className="absolute dark:bg-gray-900 right-0 mt-2 w-40 bg-white border rounded-xl shadow-md z-50 overflow-hidden"
           >
             <Link
               to="/app/dashboard"
-              className="block  md:hidden px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
+              className="block  md:hidden dark:text-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
               onClick={() => setOpen(false)}
             >
               Dashboard
             </Link>
             <Link
               to="/app/profile"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
+              className="block dark:text-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
               onClick={() => setOpen(false)}
             >
               Profile
@@ -62,14 +62,14 @@ function UserMenu() {
 
             <Link
               to="/app/stats"
-              className="block md:hidden px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
+              className="block dark:text-gray-300 md:hidden px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
               onClick={() => setOpen(false)}
             >
               Stats
             </Link>
             <button
               onClick={handleLogout}
-              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+              className="w-full text-left px-4 py-2 dark:text-red-500 text-sm text-red-600 hover:bg-red-50"
             >
               Log out
             </button>

@@ -20,87 +20,45 @@ function FlipCard({ icon, label, value, children }) {
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.6 }}
+        className="relative w-full h-full"
         style={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
           transformStyle: "preserve-3d",
         }}
       >
         {/* Front */}
         <div
+          className="absolute inset-0 rounded-2xl shadow-lg p-6 flex flex-col justify-between 
+          bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-100"
           style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "white",
-            borderRadius: "1rem",
-            boxShadow: "0 4px 10px rgb(0 0 0 / 0.1)",
-            padding: "24px 24px 32px 24px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
             backfaceVisibility: "hidden",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1.5rem", // redus gap
-              textAlign: "center",
-            }}
-          >
-            <div style={{ color: "#f59e0b", fontSize: "28px" }}>{icon}</div>
+          <div className="flex items-center gap-6">
+            <div className="text-yellow-500 text-3xl">{icon}</div>
             <div>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "#6b7280",
-                  marginBottom: "0.5rem",
-                }}
-              >
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
                 {label}
               </p>
-              <p
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "700",
-                  color: "#1f2937",
-                  marginBottom: 0,
-                }}
-              >
+              <p className="text-3xl font-bold text-gray-800 dark:text-yellow-300">
                 {value}
               </p>
             </div>
           </div>
-          <span
-            style={{
-              fontSize: "22px",
-              color: "#9ca3af",
-              alignSelf: "flex-end",
-            }}
-          >
+          <span className="text-xl text-gray-400 dark:text-gray-500 self-end">
             ℹ️
           </span>
         </div>
 
         {/* Back */}
         <div
+          className="absolute inset-0 rounded-2xl shadow-lg p-6 text-sm overflow-y-auto 
+          bg-yellow-100 text-gray-800 dark:bg-gray-800 dark:text-yellow-100"
           style={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "#fef3c7",
-            borderRadius: "1rem",
-            boxShadow: "0 4px 10px rgb(0 0 0 / 0.1)",
-            padding: "24px 24px 32px 24px",
-            color: "#374151",
-            fontSize: "14px",
-            overflowY: "auto",
-            transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
           }}
         >
-          <div style={{ lineHeight: 1.6 }}>{children}</div>
+          <div className="leading-relaxed">{children}</div>
         </div>
       </motion.div>
     </div>

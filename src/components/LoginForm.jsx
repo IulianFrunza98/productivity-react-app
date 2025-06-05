@@ -46,17 +46,22 @@ function LoginForm({ onToggle }) {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 w-full max-w-xs mx-auto"
     >
-      <h2 className="text-xl font-semibold text-center">Login</h2>
+      <h2 className="text-xl font-semibold text-center text-gray-900 dark:text-gray-100">
+        Login
+      </h2>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm font-medium">
+        <label
+          htmlFor="email"
+          className="text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Email
         </label>
         <input
           id="email"
           type="email"
           required
-          className="border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          className="border bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition text-gray-900 dark:text-gray-100"
           placeholder="Your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +69,10 @@ function LoginForm({ onToggle }) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="password" className="text-sm font-medium">
+        <label
+          htmlFor="password"
+          className="text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Password
         </label>
         <div className="relative">
@@ -73,7 +81,7 @@ function LoginForm({ onToggle }) {
             type={showPassword ? "text" : "password"}
             required
             minLength={6}
-            className="border bg-white border-gray-300 rounded px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition w-full"
+            className="border bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition w-full text-gray-900 dark:text-gray-100"
             placeholder="Your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -81,7 +89,7 @@ function LoginForm({ onToggle }) {
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             aria-label="Toggle password visibility"
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -101,7 +109,7 @@ function LoginForm({ onToggle }) {
           disabled={loading}
           type="button"
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-3 cursor-pointer bg-white text-gray-800 px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center justify-center gap-3 cursor-pointer bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             "Please wait..."
@@ -114,7 +122,7 @@ function LoginForm({ onToggle }) {
         </button>
       </div>
 
-      <div className="text-center text-sm mt-4">
+      <div className="text-center text-sm mt-4 dark:text-gray-300">
         Don't have an account?{" "}
         <button
           type="button"
