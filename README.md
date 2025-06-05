@@ -121,9 +121,9 @@ Feel free to fork the repository and submit a pull request. Feedback and improve
 **Iulian Frunză**  
 Front-End Developer
 
-- GitHub: [@IulianFrunza98](https://github.com/IulianFrunza98)
-- LinkedIn: [linkedin.com/in/yourprofile](https://www.linkedin.com/in/iulian-costel-frunza-4736a8330/)
-- Email: fiulian87@yahoo.com
+- GitHub: (https://github.com/IulianFrunza98)
+- Linkedin: (https://www.linkedin.com/in/iulian-costel-frunza-4736a8330/)
+- Email: (fiulian87@yahoo.com)
 
 ---
 
