@@ -1,5 +1,5 @@
 import ProductivityYellow from "../assets/productivity-yellow.svg";
-import { LoginForm } from "../components/LoginForm";
+import AuthForm from "../components/AuthForm";
 
 function Homepage() {
   return (
@@ -23,7 +23,7 @@ function Homepage() {
         <p className="text-sm text-gray-500 mb-6">
           Stay on track and manage your day
         </p>
-        <LoginForm />
+        <AuthForm />
       </div>
     </section>
   );

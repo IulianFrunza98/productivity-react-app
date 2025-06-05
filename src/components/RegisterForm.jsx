@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import useAuthStore from "../store/useAuthStore";
+import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-function LoginForm({ onToggle }) {
+function RegisterForm({ onToggle }) {
+  const registerWithEmail = useAuthStore((state) => state.registerWithEmail);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
-  const loginWithEmail = useAuthStore((state) => state.loginWithEmail);
-  const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,21 +19,14 @@ function LoginForm({ onToggle }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
-    try {
-      await loginWithEmail(email, password);
-      navigate(from, { replace: true });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
     }
-  }
 
-  async function handleGoogleLogin() {
     setLoading(true);
     try {
-      await loginWithGoogle();
+      await registerWithEmail(email, password);
       navigate(from, { replace: true });
     } catch (err) {
       console.error(err);
@@ -46,7 +40,7 @@ function LoginForm({ onToggle }) {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 w-full max-w-xs mx-auto"
     >
-      <h2 className="text-xl font-semibold text-center">Login</h2>
+      <h2 className="text-xl font-semibold text-center">Create account</h2>
 
       <div className="flex flex-col gap-2">
         <label htmlFor="email" className="text-sm font-medium">
@@ -88,44 +82,56 @@ function LoginForm({ onToggle }) {
           </button>
         </div>
       </div>
+
+      {/* Confirm Password Field */}
+      <div className="flex flex-col gap-2">
+        <label htmlFor="confirmPassword" className="text-sm font-medium">
+          Confirm Password
+        </label>
+        <div className="relative">
+          <input
+            id="confirmPassword"
+            type={showConfirm ? "text" : "password"}
+            required
+            minLength={6}
+            className="border bg-white border-gray-300 rounded px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition w-full"
+            placeholder="Confirm your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => setShowConfirm((prev) => !prev)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            aria-label="Toggle confirm password visibility"
+          >
+            {showConfirm ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
+      </div>
+
       <div className="flex flex-col gap-3 mt-4">
         <button
           type="submit"
-          disabled={!email || !password || loading}
+          disabled={!email || !password || !confirmPassword || loading}
           className="cursor-pointer bg-yellow-400 text-black border px-4 py-2 rounded hover:bg-yellow-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-
-        <button
-          disabled={loading}
-          type="button"
-          onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-3 cursor-pointer bg-white text-gray-800 px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {loading ? (
-            "Please wait..."
-          ) : (
-            <>
-              <FaGoogle />
-              <span>Sign in with Google</span>
-            </>
-          )}
+          {loading ? "Creating account..." : "Register"}
         </button>
       </div>
 
       <div className="text-center text-sm mt-4">
-        Don't have an account?{" "}
+        Already have an account?{" "}
         <button
           type="button"
           onClick={onToggle}
           className="text-yellow-500 font-medium hover:underline"
         >
-          Create one
+          Login
         </button>
       </div>
     </form>
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

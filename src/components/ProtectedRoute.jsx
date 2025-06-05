@@ -6,7 +6,11 @@ function ProtectedRoute({ children }) {
   const loading = useAuthStore((state) => state.loading);
 
   if (loading) {
-    return <div className="text-center py-10">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin h-8 w-8 border-4 border-yellow-400 border-t-transparent rounded-full"></div>
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
