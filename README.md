@@ -8,8 +8,6 @@ A modern, responsive productivity app built with React, Firebase, and Zustand. F
 
 ## 📸 Preview
 
-<!-- Optional: Replace with your own image -->
-
 ![App Screenshot]
 ![Dashboard](./public/dashboard.png)
 ![Notifications](./public/notifications.png)
