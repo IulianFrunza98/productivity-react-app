@@ -13,6 +13,7 @@ function Topbar() {
 
   return (
     <nav className="bg-white dark:bg-gray-800 w-full p-3 shadow-md rounded-2xl flex items-center justify-between max-w-full transition-colors duration-300">
+      <UserMenu />
       <div className="flex-1 min-w-0">
         <Search />
       </div>
@@ -33,11 +34,9 @@ function Topbar() {
         >
           <FaUserCircle className="dark:text-yellow-300" size={24} />
         </NavLink>
-        <UserMenu />
       </div>
 
       <div className="flex md:hidden items-center gap-4 ml-4">
-        <UserMenu />
         <Button
           onClick={() => setOpenAddForm((prev) => !prev)}
           className="flex items-center gap-2"
