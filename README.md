@@ -32,7 +32,7 @@ A modern, responsive productivity app built with React, Firebase, and Zustand. F
 - 🔔 Real-time notifications for due/overdue tasks
 - 🧭 Sidebar with live badge updates
 - ☁️ Firestore integration with secure access rules
-- 🎨 Smooth animations using Framer Motion
+- 🎨 Smooth animations using Framer Motion, Darkmode
 
 ---
 
